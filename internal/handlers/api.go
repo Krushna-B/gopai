@@ -9,7 +9,7 @@ import (
 func Handler(r *chi.Mux) {
 	//Global middleware
 	r.Use(chimiddle.StripSlashes)
-	r.Route("/accout", func(router chi.Router) {
+	r.Route("/account", func(router chi.Router) {
 		router.Use(middleware.Authorization)
 		router.Get("/coins", GetCoinBalance)
 	})
