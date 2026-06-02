@@ -1,0 +1,17 @@
+package handlers
+
+import (
+	"github.com/Krushna-B/goapi/internal/middleware"
+	"github.com/go-chi/chi"
+	chimiddle "github.com/go-chi/chi/middleware"
+)
+
+func Handler(r *chi.Mux) {
+	//Global middleware
+	r.Use(chimiddle.StripSlashes)
+	r.Route("/accout", func(router chi.Router) {
+		router.Use(middleware.Authorization)
+		router.Get("/coins", GetCoinBalance)
+	})
+
+}
